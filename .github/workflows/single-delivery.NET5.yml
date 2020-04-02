@@ -17,10 +17,8 @@ jobs:
     
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v2
-          with:
-            ref: NET5
-
+        uses: actions/checkout@master
+        
       - name: "Setup .NET 5.0"
         uses: actions/setup-dotnet@v1
         with:
