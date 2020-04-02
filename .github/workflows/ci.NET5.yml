@@ -1,4 +1,4 @@
-name: Continuous Integration .NET5
+name: "Continuous Integration .NET5"
 
 on: 
   push:

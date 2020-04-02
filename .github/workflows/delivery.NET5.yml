@@ -1,4 +1,4 @@
-name: Delivery Build .NET5
+name: "Delivery Build .NET5"
 
 on:
   push:

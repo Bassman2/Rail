@@ -1,4 +1,4 @@
-name: Single File Delivery .Net 5
+name: "Single File Delivery .Net 5"
 
 on: 
   push:
