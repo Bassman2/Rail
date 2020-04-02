@@ -13,7 +13,9 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        framework: [win-x86, win-x64, win-arm, osx-x64, linux-x64, linux-arm]
+        framework: [win-x86, win-x64, win-arm]
+        
+# , osx-x64, linux-x64, linux-arm        
     
     steps:
       - name: "Checkout"
