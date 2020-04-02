@@ -16,7 +16,9 @@ jobs:
         framework: [win-x86, win-x64, win-arm, osx-x64, linux-x64, linux-arm]
     
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        with:
+          ref: NET5
 
       - name: "Setup .NET 5.0"
         uses: actions/setup-dotnet@v1
