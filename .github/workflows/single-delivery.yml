@@ -1,4 +1,4 @@
-name: Single File Delivery
+name: Single File Delivery .Net 5
 
 on: 
   push:
@@ -13,23 +13,28 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        framework: [win-x86, win-x64]
+        framework: [win-x86, win-x64, win-arm, osx-x64, linux-x64, linux-arm]
     
     steps:
       - uses: actions/checkout@master
 
-      - name: "Setup .NET Core"
+      - name: "Setup .NET 5.0"
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 3.1.101
+          dotnet-version: 5.0.100-preview.2.20176.6
+          
+      - name: "Version check"
+        run: dotnet --version
+        working-directory: .
 
       - name: "Build Rail ${{ matrix.framework }}"
-        run: dotnet publish -c Release -f netcoreapp3.1 -o ../Delivery/${{ matrix.framework }} -r ${{ matrix.framework }} --self-contained true /p:PublishSingleFile=true "Rail.csproj"
+        run: dotnet publish -c Release -f netcoreapp5.0 -o ../Delivery/${{ matrix.framework }} -r ${{ matrix.framework }} --self-contained true /p:PublishSingleFile=true "Rail.csproj"
         working-directory: ./Rail
 
       - name:  "Build Rail.TrackEditor ${{ matrix.framework }}"
-        run: dotnet publish -c Release -f netcoreapp3.1 -o ../Delivery/${{ matrix.framework }} -r ${{ matrix.framework }} --self-contained true /p:PublishSingleFile=true "Rail.TrackEditor.csproj"
+        run: dotnet publish -c Release -f netcoreapp5.0 -o ../Delivery/${{ matrix.framework }} -r ${{ matrix.framework }} --self-contained true /p:PublishSingleFile=true "Rail.TrackEditor.csproj"
         working-directory: ./Rail.TrackEditor
+
 
       - name: "Archive Rail ${{ matrix.framework }}"
         uses: actions/upload-artifact@v1
@@ -42,3 +47,7 @@ jobs:
         with:
             name: Rail.TrackEditor.${{ matrix.framework }}.exe
             path: ./Delivery/${{ matrix.framework }}/Rail.TrackEditor.exe
+            
+ 
+ 
+
