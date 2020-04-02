@@ -3,10 +3,10 @@ name: Continuous Integration .NET5
 on: 
   push:
     branches:
-      - master
+      - NET5
   pull_request:
     branches: 
-      - master
+      - NET5
 
 jobs:
   build:
@@ -14,7 +14,9 @@ jobs:
     
     steps:
       - name: "Checkout"
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
+          with:
+            ref: NET5
 
       - name: "Download sandcastle"
         run: |
